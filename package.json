@@ -1,0 +1,21 @@
+{
+  "name": "contao-tinymce-bundle",
+  "version": "1.0.0",
+  "description": "TinyMCE integration for contao",
+  "author": "Heimrich & Hannot GmbH <digitales@heimrich-hannot.de>",
+  "license": "LGPL-3.0-or-later",
+  "dependencies": {
+    "@hundh/contao-tinymce-bundle": "^1.0"
+  },
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.24"
+  },
+  "scripts": {
+    "build-dev": "yarn encore dev",
+    "build-production": "yarn encore production"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead"
+  ]
+}
