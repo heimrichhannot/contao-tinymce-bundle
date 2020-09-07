@@ -1,7 +1,7 @@
 <?php
 
 
-namespace HeimrichHannot\TinyMCEBundle\EventListener;
+namespace HeimrichHannot\TinyMceBundle\EventListener;
 
 use HeimrichHannot\TwigTemplatesBundle\Event\BeforeRenderTwigTemplateEvent;
 

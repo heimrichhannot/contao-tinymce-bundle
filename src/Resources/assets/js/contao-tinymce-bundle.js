@@ -1,3 +1,22 @@
-import { TinyMCEBundle } from '../../npm-package';
+import tinymce from 'tinymce/tinymce';
+import 'tinymce/themes/silver/index';
 
-document.addEventListener('DOMContentLoaded', TinyMCEBundle.init);
+class TinyMCEBundle {
+
+  static init() {
+      let tinyMCEFields = document.querySelectorAll('textarea[data-tinymce="1"]');
+
+      tinyMCEFields.forEach((element) => {
+        let config = JSON.parse(element.getAttribute('data-tinymce-config'));
+
+        console.log(config);
+        if(config) {
+          config.selector = '#' + element.id;
+
+          tinymce.init(config);
+        }
+      });
+  }
+}
+
+export {TinyMCEBundle};

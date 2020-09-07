@@ -3,7 +3,7 @@ services:
     public: true
     autowire: true
 
-  HeimrichHannot\TinyMCEBundle\EventListener\BeforeRenderTwigTemplateEventListener:
+  HeimrichHannot\TinyMceBundle\EventListener\BeforeRenderTwigTemplateEventListener:
     public: false
     tags:
       - { name: kernel.event_listener, event: huh.twig.beforeRenderTemplate, method: '__invoke' }
