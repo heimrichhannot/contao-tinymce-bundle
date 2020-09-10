@@ -6,11 +6,13 @@ This bundle offers support for the JavaScript library [tinyMCE](https://www.tiny
 
 - activate tinymce support on page level (with inheritance and override option)
 - customize options from dca or dynamically from event
-- [Encore Bundle](https://github.com/heimrichhannot/contao-encore-bundle) support
+- [heimrichhannot/contao-encore-bundle](https://github.com/heimrichhannot/contao-encore-bundle) support
 
 ## Installation
 
 Install via composer: `composer require heimrichhannot/contao-tinymce-bundle`.
+
+If you don't use [heimrichhannot/contao-encore-bundle](https://github.com/heimrichhannot/contao-encore-bundle), you can proceed to the configuration chapter.
 
 ### Using heimrichhannot/contao-encore-bundle
 
