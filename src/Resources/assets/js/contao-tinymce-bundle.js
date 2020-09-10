@@ -32,7 +32,7 @@ class TinyMceBundle {
                 config.selector = '#' + element.id;
 
                 // set language
-                config.language_url = '/build/tinymce/languages/' + language + '.js';
+                config.language_url = (typeof NON_ENCORE !== 'undefined' && NON_ENCORE ? '/bundles/heimrichhannottinymce/js/languages/' : '/build/tinymce/languages/') + language + '.js';
                 config.language = language;
 
                 // init
