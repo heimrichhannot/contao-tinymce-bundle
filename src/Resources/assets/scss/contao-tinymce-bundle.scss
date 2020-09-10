@@ -1,0 +1,6 @@
+.tox {
+  svg {
+    // is set to 100% in bootstrap's reboot.scss causing the menus to break
+    width: auto;
+  }
+}

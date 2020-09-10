@@ -1,22 +1,45 @@
+import "@hundh/contao-utils-bundle"
+
 import tinymce from 'tinymce/tinymce';
-import 'tinymce/themes/silver/index';
+import 'tinymce/icons/default';
+import 'tinymce/themes/silver';
 
-class TinyMCEBundle {
+class TinyMceBundle {
 
-  static init() {
-      let tinyMCEFields = document.querySelectorAll('textarea[data-tinymce="1"]');
+    static init() {
+        let tinyMceFields = document.querySelectorAll('textarea[data-tinymce="1"]'),
+            language = document.querySelector('html').getAttribute('lang');
 
-      tinyMCEFields.forEach((element) => {
-        let config = JSON.parse(element.getAttribute('data-tinymce-config'));
+        tinyMceFields.forEach((element) => {
+            let config = JSON.parse(element.getAttribute('data-tinymce-options'));
 
-        console.log(config);
-        if(config) {
-          config.selector = '#' + element.id;
+            if (config === null) {
+                config = {};
+            }
 
-          tinymce.init(config);
-        }
-      });
-  }
+            // load plugins
+            function importPlugin(plugin, remainingPlugins, callback) {
+                import(/* webpackChunkName: "tinymce-plugin-[request]" */ 'tinymce/plugins/' + plugin).then(({ default: _ }) => {
+                    utilsBundle.util.runRecursiveFunction(importPlugin, remainingPlugins, callback)
+                }).catch((error) => {
+                    console.log('An error occurred while loading a tinymce plugin: ' + error);
+
+                    utilsBundle.util.runRecursiveFunction(importPlugin, remainingPlugins, callback)
+                });
+            }
+
+            utilsBundle.util.runRecursiveFunction(importPlugin, ['paste', 'link', 'lists'], () => {
+                config.selector = '#' + element.id;
+
+                // set language
+                config.language_url = '/build/tinymce/languages/' + language + '.js';
+                config.language = language;
+
+                // init
+                tinymce.init(config);
+            });
+        });
+    }
 }
 
-export {TinyMCEBundle};
+export {TinyMceBundle};

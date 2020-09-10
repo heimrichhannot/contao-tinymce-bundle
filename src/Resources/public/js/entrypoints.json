@@ -1,0 +1,9 @@
+{
+  "entrypoints": {
+    "contao-tinymce-bundle": {
+      "js": [
+        "/bundles/heimrichhannottinymce/js/contao-tinymce-bundle.js"
+      ]
+    }
+  }
+}

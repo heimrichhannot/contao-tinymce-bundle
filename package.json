@@ -5,7 +5,11 @@
   "author": "Heimrich & Hannot GmbH <digitales@heimrich-hannot.de>",
   "license": "LGPL-3.0-or-later",
   "dependencies": {
-    "tinymce": "^5.4"
+    "@hundh/contao-utils-bundle": "^1.17",
+    "copy-webpack-plugin": "^6.1",
+    "path": "^0.12",
+    "tinymce": "^5.4",
+    "tinymce-i18n": "^20.4"
   },
   "devDependencies": {
     "@symfony/webpack-encore": "^0.30"

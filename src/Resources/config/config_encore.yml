@@ -1,6 +1,7 @@
 huh_encore:
   js_entries:
-    - { name: contao-tinymce-bundle, requires_css: true, file: vendor/heimrichhannot/contao-tinymce-bundle/src/Resources/assets/js/contao-tinymce-bundle-init.js }
+    - { name: contao-tinymce-bundle, file: vendor/heimrichhannot/contao-tinymce-bundle/src/Resources/assets/js/contao-tinymce-bundle-init.js }
+    - { name: contao-tinymce-bundle-theme, requires_css: true, file: vendor/heimrichhannot/contao-tinymce-bundle/src/Resources/assets/js/contao-tinymce-bundle-theme.js }
   unset_global_keys:
     js:
       - contao-tinymce-bundle

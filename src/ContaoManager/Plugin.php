@@ -41,5 +41,6 @@ class Plugin implements BundlePluginInterface, ExtensionPluginInterface, ConfigP
     public function registerContainerConfiguration(LoaderInterface $loader, array $managerConfig)
     {
         $loader->load('@HeimrichHannotTinyMceBundle/Resources/config/listeners.yml');
+        $loader->load('@HeimrichHannotTinyMceBundle/Resources/config/services.yml');
     }
 }

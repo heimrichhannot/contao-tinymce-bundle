@@ -1,3 +1,3 @@
-import { TinyMCEBundle } from './contao-tinymce-bundle';
+import { TinyMceBundle } from './contao-tinymce-bundle';
 
-document.addEventListener('DOMContentLoaded', TinyMCEBundle.init);
+document.addEventListener('DOMContentLoaded', TinyMceBundle.init);
