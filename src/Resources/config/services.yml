@@ -3,5 +3,5 @@ services:
     public: true
     autowire: true
 
-  HeimrichHannot\TinyMceBundle\Manager\:
-    resource: '../../Manager/*'
+  HeimrichHannot\TinyMceBundle\:
+    resource: '../../{Manager,Asset}/*'
