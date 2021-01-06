@@ -7,11 +7,11 @@ import 'tinymce/themes/silver';
 class TinyMceBundle {
 
     static init() {
-        TinyMceBundle.initTinymce();
+        TinyMceBundle.initTinyMce();
         TinyMceBundle.initEventListeners();
     }
 
-    static initTinymce() {
+    static initTinyMce() {
         let tinyMceFields = document.querySelectorAll('textarea[data-tinymce="1"]');
 
         tinyMceFields.forEach((element) => {
@@ -50,7 +50,7 @@ class TinyMceBundle {
     }
 
     static initEventListeners() {
-        utilsBundle.event.addDynamicEventListener('click', '.tinymce-limitChars', (element) => {
+        utilsBundle.event.addDynamicEventListener('click', '.tinymce-limit-chars', (element) => {
             let message = element.closest('.tinymce-limit-error'),
                 editorTarget = message.dataset.tinymce,
                 limit = message.dataset.limit,
@@ -61,8 +61,7 @@ class TinyMceBundle {
             }
 
             editor.getBody().textContent = editor.getBody().textContent.substring(0, limit);
-            message.remove();
-            TinyMceBundle.resetTinymceError(editor);
+            TinyMceBundle.resetTinyMceError(editor);
         });
 
         utilsBundle.event.addDynamicEventListener('submit', '.tinymce-form', (form, e) => {
@@ -97,13 +96,13 @@ class TinyMceBundle {
 
     static getTinyMceSetup(editor, config) {
         // set maxChars event listener
-        if('undefined' !== config.maxChars) {
+        if('undefined' !== typeof config.maxChars) {
             editor.on('keyup', (e) => {
                 TinyMceBundle.limitChars(editor, config);
             });
         }
 
-        document.dispatchEvent(new CustomEvent('tinymceModifySetupOnInit'), {
+        document.dispatchEvent(new CustomEvent('tinyMceModifySetupOnInit'), {
             detail: {
                 editor: editor,
                 config: config
@@ -121,7 +120,7 @@ class TinyMceBundle {
             limit = config.maxChars;
 
         if(!limit || stats.chars <= limit) {
-            TinyMceBundle.resetTinymceError(editor);
+            TinyMceBundle.resetTinyMceError(editor);
             return;
         }
 
@@ -145,7 +144,7 @@ class TinyMceBundle {
         // update current char count in error message
         message.querySelector('.char-count').textContent = stats.chars;
 
-        TinyMceBundle.setTinymceError(editor);
+        TinyMceBundle.setTinyMceError(editor);
     }
 
     // get current char and word count
@@ -159,14 +158,19 @@ class TinyMceBundle {
         };
     }
 
-    static setTinymceError(editor) {
+    static setTinyMceError(editor) {
         let form = document.getElementById(editor.id).closest('form');
 
         form.classList.add('has-tinymce-error');
     }
 
-    static resetTinymceError(editor) {
-        let form = document.getElementById(editor.id).closest('form');
+    static resetTinyMceError(editor) {
+        let form = document.getElementById(editor.id).closest('form'),
+            message = form.querySelector('#' + editor.id + '-error');
+
+        if(message) {
+            message.remove();
+        }
 
         form.classList.remove('has-tinymce-error');
     }

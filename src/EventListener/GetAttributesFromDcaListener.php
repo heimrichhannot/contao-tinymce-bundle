@@ -112,6 +112,9 @@ class GetAttributesFromDcaListener
             $attributes['data-tinymce'] = 1;
         }
 
+
+
+
         $event = $this->eventDispatcher->dispatch(CustomizeTinyMceOptionsEvent::NAME, new CustomizeTinyMceOptionsEvent($options, $attributes, $dc));
 
         $attributes['data-tinymce-options'] = json_encode($event->getOptions());
