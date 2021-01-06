@@ -12,6 +12,9 @@ use HeimrichHannot\UtilsBundle\Container\ContainerUtil;
 use HeimrichHannot\UtilsBundle\Dca\DcaUtil;
 use HeimrichHannot\UtilsBundle\Model\ModelUtil;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Contracts\Translation\TranslatableInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
+use Twig\Environment;
 
 class GetAttributesFromDcaListener
 {
@@ -43,18 +46,28 @@ class GetAttributesFromDcaListener
      * @var ModelUtil
      */
     private $modelUtil;
+    /**
+     * @var Environment
+     */
+    protected $twig;
+    /**
+     * @var TranslatorInterface
+     */
+    protected $translator;
 
     /**
      * GetAttributesFromDcaListener constructor.
      * @param null $pageParents
      */
-    public function __construct(ContainerUtil $containerUtil, FrontendAsset $frontendAsset, EventDispatcherInterface $eventDispatcher, DcaUtil $dcaUtil, ModelUtil $modelUtil)
+    public function __construct(ContainerUtil $containerUtil, FrontendAsset $frontendAsset, EventDispatcherInterface $eventDispatcher, DcaUtil $dcaUtil, ModelUtil $modelUtil, Environment $twig, TranslatorInterface $translator)
     {
         $this->frontendAsset = $frontendAsset;
         $this->eventDispatcher = $eventDispatcher;
         $this->containerUtil = $containerUtil;
         $this->dcaUtil = $dcaUtil;
         $this->modelUtil = $modelUtil;
+        $this->twig = $twig;
+        $this->translator = $translator;
     }
 
     /**
@@ -88,6 +101,7 @@ class GetAttributesFromDcaListener
 
                 if (isset($eval['tinyMceOptions'])) {
                     $options = $eval['tinyMceOptions'];
+                    $this->addCharsLimit($options, $dc);
                 }
 
                 $this->frontendAsset->addFrontendAssets();
@@ -117,5 +131,26 @@ class GetAttributesFromDcaListener
         }
 
         return $this->pageParents;
+    }
+
+    /**
+     * add error message for tinymce maxChars violation
+     *
+     * @param array $options
+     * @param DataContainer|null $dc
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    protected function addCharsLimit(array &$options, DataContainer $dc = null): void
+    {
+        if(!key_exists('maxChars', $options)) {
+            return;
+        }
+
+        $options['maxCharsErrorMessage'] = $this->twig->render('@HeimrichHannotTinyMce/message/max_chars.html.twig', [
+            "maxChars" => $options['maxChars'],
+            "field" => $dc ? $dc->field : ""
+        ]);
     }
 }
