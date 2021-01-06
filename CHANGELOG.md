@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.2.0] - 2021-01-06
+
+- added configurable maximum char input for tinymce editors
+
 ## [0.1.1] - 2020-09-11
 
 - added service declaration for FrontendAsset
