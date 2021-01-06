@@ -7,6 +7,7 @@ This bundle offers support for the JavaScript library [tinyMCE](https://www.tiny
 - activate tinymce support on page level (with inheritance and override option)
 - customize options from dca or dynamically from event
 - [heimrichhannot/contao-encore-bundle](https://github.com/heimrichhannot/contao-encore-bundle) support
+- define maximum input chars for tinymce editors
 
 ## Installation
 
@@ -53,6 +54,17 @@ Add the following to you DCA field:
     'sql'       => "text NULL",
 ]
 ```
+
+To add a limit for maximum chars the user can enter through the tinymce editor your ether modify the `tinyMceOptions` with the `AddOptionPresetEvent` for a specific preset.
+Otherwise you could override it directly in dca.
+
+```
+$GLOBALS['TL_DCA'][table_name]['fields'][field_name]['eval']['tinyMceOptions']['maxChars'] = 200;
+```
+
+The character limit will be checked on each keyup event thats dispatched while typing in the configured tinymce editor. There will be an error message above the corresponding field.
+The form won't be submitted as long as the maximum character count is violated. If the user trys to submit the form the error message will be scrolled into view. 
+
 
 ## Events
 

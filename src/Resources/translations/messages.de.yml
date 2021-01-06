@@ -1,0 +1,3 @@
+# messages
+huh.tinymce.error.maxChars: 'In dieses Feld dürfen maximal {maxChars} Zeichen eingegeben werden. Ihre aktuelle Eingabe besteht aus <span  class="char-count">0</span> Zeichen. Bitte korrigieren Sie Ihre Eingabe.'
+huh.tinymce.button.maxChars.label: Eingabe automatisch kürzen
