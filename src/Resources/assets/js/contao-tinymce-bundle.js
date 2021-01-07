@@ -67,7 +67,7 @@ class TinyMceBundle {
         utilsBundle.event.addDynamicEventListener('submit', '.tinymce-form', (form, e) => {
             let errors = form.querySelectorAll('.tinymce-error');
 
-            if(!errors) {
+            if(0 === errors.length) {
                 return;
             }
 
