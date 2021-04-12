@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - merged services.yml and listeners.yml
 - fixed contao 4.4 compatibility
 - fixed missing dependencies in composer.json
+- fixed loading issue with IE11
 
 ## [0.2.1] - 2021-01-07
 - fixed handling of form submit on errors 

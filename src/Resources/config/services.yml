@@ -6,6 +6,10 @@ services:
     resource: '../../{Manager,Asset}/*'
     public: true
 
-  HeimrichHannot\TinyMceBundle\EventListener\:
+  HeimrichHannot\TinyMceBundle\EventListener\Contao\:
     resource: '../../EventListener/Contao/*'
     public: true
+
+  HeimrichHannot\TinyMceBundle\EventSubscriber\:
+    resource: '../../EventSubscriber/*'
+    autoconfigure: true
