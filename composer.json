@@ -13,7 +13,7 @@
     "symfony/event-dispatcher": "^3.4|^4.4"
   },
   "conflict": {
-    "heimrichhannot/contao-encore-bundle": "<1.5"
+    "heimrichhannot/contao-encore-bundle": "<1.11"
   },
   "suggest": {
     "heimrichhannot/contao-encore-bundle": "Manage dependencies with Symfony Webpack Encore"

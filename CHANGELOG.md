@@ -1,7 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [0.3.0-DEV] - 2021-04-12
+## [0.3.1] - 2021-04-12
+- fixed encore bundle minimum version
+
+## [0.3.0] - 2021-04-12
 - updated encore bundle integration
 - moved GetAttributesFromDcaListener to EventListener/Contao namespace
 - renamed GetAttributesFromDcaListener::onGetAttributesFromDca() to ::invoke()
