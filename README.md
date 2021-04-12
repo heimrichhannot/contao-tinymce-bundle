@@ -68,7 +68,7 @@ The form won't be submitted as long as the maximum character count is violated. 
 
 ## Events
 
-Name | Arguments
+Name | Description
 ---- | ---------
-`AddOptionPresetEvent` | `string $presets`
-`CustomizeTinyMceOptionsEvent` | `array $options, array $fieldAttributes, $dc`
+`AddOptionPresetEvent` | Add custom tinymce presets or customize existing ones.
+`CustomizeTinyMceOptionsEvent` | Customize tinymce options and field attributes before rendering.
