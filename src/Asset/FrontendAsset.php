@@ -3,9 +3,10 @@
 namespace HeimrichHannot\TinyMceBundle\Asset;
 
 use HeimrichHannot\UtilsBundle\Container\ContainerUtil;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Psr\Container\ContainerInterface;
+use Symfony\Component\DependencyInjection\ServiceSubscriberInterface;
 
-class FrontendAsset
+class FrontendAsset implements ServiceSubscriberInterface
 {
     /**
      * @var ContainerUtil
@@ -28,11 +29,18 @@ class FrontendAsset
             return;
         }
 
-        if ($this->container->has('huh.encore.asset.frontend')) {
-            $this->container->get('huh.encore.asset.frontend')->addActiveEntrypoint('contao-tinymce-bundle');
-            $this->container->get('huh.encore.asset.frontend')->addActiveEntrypoint('contao-tinymce-bundle-theme');
+        if ($this->container->has('HeimrichHannot\EncoreBundle\Asset\FrontendAsset')) {
+            $this->container->get(\HeimrichHannot\EncoreBundle\Asset\FrontendAsset::class)->addActiveEntrypoint('contao-tinymce-bundle');
+            $this->container->get(\HeimrichHannot\EncoreBundle\Asset\FrontendAsset::class)->addActiveEntrypoint('contao-tinymce-bundle-theme');
         }
 
         $GLOBALS['TL_JAVASCRIPT']['contao-tinymce-bundle'] = 'bundles/heimrichhannottinymce/js/contao-tinymce-bundle.js|static';
+    }
+
+    public static function getSubscribedServices()
+    {
+        return [
+            '?HeimrichHannot\EncoreBundle\Asset\FrontendAsset'
+        ];
     }
 }

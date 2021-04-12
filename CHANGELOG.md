@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [DEV] - 2021-04-12
+- updated encore bundle integration
+
 ## [0.2.1] - 2021-01-07
 - fixed handling of form submit on errors 
 

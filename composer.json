@@ -6,7 +6,12 @@
   "require": {
     "php": "^7.1",
     "contao/core-bundle": "^4.4",
-    "heimrichhannot/contao-utils-bundle": "^2.178"
+    "heimrichhannot/contao-utils-bundle": "^2.178",
+    "psr/container": "^1.0|^2.0",
+    "symfony/dependency-injection": "^3.4|^4.4"
+  },
+  "conflict": {
+    "heimrichhannot/contao-encore-bundle": "<1.5"
   },
   "suggest": {
     "heimrichhannot/contao-encore-bundle": "Manage dependencies with Symfony Webpack Encore"
