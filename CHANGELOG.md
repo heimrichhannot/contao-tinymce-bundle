@@ -1,8 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [DEV] - 2021-04-12
+## [0.3.0-DEV] - 2021-04-12
 - updated encore bundle integration
+- moved GetAttributesFromDcaListener to EventListener/Contao namespace
+- renamed GetAttributesFromDcaListener::onGetAttributesFromDca() to ::invoke()
+- merged services.yml and listeners.yml
 - fixed contao 4.4 compatibility
 - fixed missing dependencies in composer.json
 

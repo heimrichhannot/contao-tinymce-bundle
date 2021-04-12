@@ -1,7 +1,7 @@
 <?php
 
 
-namespace HeimrichHannot\TinyMceBundle\EventListener;
+namespace HeimrichHannot\TinyMceBundle\EventListener\Contao;
 
 
 use Contao\DataContainer;
@@ -15,6 +15,12 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 use Twig\Environment;
 
+/**
+ * Class GetAttributesFromDcaListener
+ * @package HeimrichHannot\TinyMceBundle\EventListener\Contao
+ *
+ * @Hook("getAttributesFromDca")
+ */
 class GetAttributesFromDcaListener
 {
     private $pageParents = null;
@@ -70,13 +76,11 @@ class GetAttributesFromDcaListener
     }
 
     /**
-     * @Hook("getAttributesFromDca")
-     *
      * @param array $attributes
-     * @param DataContainer $dc
+     * @param DataContainer|null $dc
      * @return array
      */
-    public function onGetAttributesFromDca(array $attributes, $dc = null): array
+    public function __invoke(array $attributes, $dc = null): array
     {
         if ($this->containerUtil->isBackend() || !in_array($attributes['type'], ['textarea']))
         {

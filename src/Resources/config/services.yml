@@ -1,7 +1,11 @@
 services:
   _defaults:
-    public: true
     autowire: true
 
   HeimrichHannot\TinyMceBundle\:
     resource: '../../{Manager,Asset}/*'
+    public: true
+
+  HeimrichHannot\TinyMceBundle\EventListener\:
+    resource: '../../EventListener/Contao/*'
+    public: true
