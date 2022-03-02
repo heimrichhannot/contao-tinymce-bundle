@@ -1,8 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3.2] - 2022-03-02
+- Changed: allow php 8
+
 ## [0.3.1] - 2021-04-12
-- fixed encore bundle minimum version
+- Fixed: encore bundle minimum version
 
 ## [0.3.0] - 2021-04-12
 - updated encore bundle integration
