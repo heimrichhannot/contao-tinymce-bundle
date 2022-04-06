@@ -37,34 +37,103 @@ Encore.addPlugin(new CopyWebpackPlugin({
 }));
 ```
 
+## Usage
+
+Allow TinyMce in your page configuration and enable it in the field dca.
+
+```php
+class CustomDataContainer 
+{
+    private RequestStack $requestStack;
+    private ScopeMatcher $scopeMatcher;
+
+    public function onLoadCallback(DataContainer $dc = null): void
+    {
+        if ($this->requestStack->getCurrentRequest() && $this->scopeMatcher->isFrontendRequest($this->requestStack->getCurrentRequest())) {
+            $GLOBALS['TL_DCA']['tl_custom']['fields']['text']['eval']['rte'] = 'tinyMCE';
+        }
+    }
+}
+```
+
+Out of the box there is only one preset available: `limited`. You can add more presets through the `AddOptionPresetEvent` or customize the configuration by yourself in the dca. See configuration chaptar. 
+
 ## Configuration
 
 ### Using the DCA
 
-Add the following to you DCA field:
+You can set custom options in your dca or use presets:
 
-```
-// ...
-'message' => [
-    'label'     => &$GLOBALS['TL_LANG']['tl_submission']['message'],
-    'exclude'   => true,
-    'inputType' => 'textarea',
-    'eval'      => ['tl_class' => 'long clr', 'rte' => 'tinyMCE',
-                    'tinyMceOptions' => System::getContainer()->get(\HeimrichHannot\TinyMceBundle\Manager\TinyMceManager::class)->getOptionPreset('limited')],
-    'sql'       => "text NULL",
-]
+```php
+use Contao\CoreBundle\Routing\ScopeMatcher;
+use Contao\CoreBundle\ServiceAnnotation\Callback;
+use HeimrichHannot\TinyMceBundle\Manager\TinyMceManager;
+use Symfony\Component\HttpFoundation\RequestStack;
+
+class CustomDataContainer 
+{
+    private RequestStack $requestStack;
+    private ScopeMatcher $scopeMatcher;
+    private TinyMceManager $tinyMceManager;
+
+    /**
+     * @Callback(table="tl_jobmarket_job", target="config.onload")
+     */
+    public function onLoadCallback(DataContainer $dc = null): void
+    {
+        if ($this->requestStack->getCurrentRequest() && $this->scopeMatcher->isFrontendRequest($this->requestStack->getCurrentRequest())) {
+            $GLOBALS['TL_DCA']['tl_custom']['fields']['text']['eval']['rte'] = 'tinyMCE';
+            $GLOBALS['TL_DCA']['tl_custom']['fields']['text']['eval']['tinyMceOptions'] = [
+                'menubar' => 'edit format',
+                'toolbar' => 'link unlink | bold italic | bullist numlist | undo redo | code',
+                'plugins' => ['paste', 'link', 'lists'],
+                'paste_as_text' => true
+            ];
+            
+            $GLOBALS['TL_DCA']['tl_custom']['fields']['littleText']['eval']['rte'] = 'tinyMCE';
+            $GLOBALS['TL_DCA']['tl_custom']['fields']['littleText']['eval']['tinyMceOptions'] = $this->tinyMceManager->->getOptionPreset('limited');
+        }
+    }
+}
 ```
 
-To add a limit for maximum chars the user can enter through the tinymce editor your ether modify the `tinyMceOptions` with the `AddOptionPresetEvent` for a specific preset.
-Otherwise you could override it directly in dca.
+Additional you can set a character limit:
 
-```
-$GLOBALS['TL_DCA'][table_name]['fields'][field_name]['eval']['tinyMceOptions']['maxChars'] = 200;
+```php
+$GLOBALS['TL_DCA']['tl_custom']['fields']['text']['eval']['tinyMceOptions'] = ['maxChars' => 200];
 ```
 
 The character limit will be checked on each keyup event thats dispatched while typing in the configured tinymce editor. There will be an error message above the corresponding field.
 The form won't be submitted as long as the maximum character count is violated. If the user trys to submit the form the error message will be scrolled into view. 
 
+### Add custom presets
+
+To reuse your tinyMce configuration, you can add custom presets
+
+```php
+use HeimrichHannot\TinyMceBundle\Event\AddOptionPresetEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+
+class TinyMceSubscriber implements EventSubscriberInterface
+{
+    public function onAddOptionPresetEvent(AddOptionPresetEvent $event): void
+    {
+        $event->addPreset('custom', [
+            'menubar' => false,
+            'toolbar' => 'undo redo | bold | bullist numlist indent outdent | link unlink',
+            'plugins' => ['link', 'lists'],
+            'statusbar' => false,
+        ]);
+    }
+
+    public static function getSubscribedEvents()
+    {
+        return [
+            AddOptionPresetEvent::NAME => 'onAddOptionPresetEvent',
+        ];
+    }
+}
+```
 
 ## Events
 
