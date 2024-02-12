@@ -2,45 +2,30 @@
 
 namespace HeimrichHannot\TinyMceBundle\Asset;
 
-use HeimrichHannot\UtilsBundle\Container\ContainerUtil;
-use Psr\Container\ContainerInterface;
-use Symfony\Component\DependencyInjection\ServiceSubscriberInterface;
+use HeimrichHannot\EncoreContracts\PageAssetsTrait;
+use HeimrichHannot\UtilsBundle\Util\Utils;
+use Symfony\Contracts\Service\ServiceSubscriberInterface;
 
 class FrontendAsset implements ServiceSubscriberInterface
 {
-    /**
-     * @var ContainerUtil
-     */
-    private $containerUtil;
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
+    use PageAssetsTrait;
 
-    public function __construct(ContainerInterface $container, ContainerUtil $containerUtil)
+    private Utils $utils;
+
+    public function __construct(Utils $utils)
     {
-        $this->containerUtil = $containerUtil;
-        $this->container = $container;
+        $this->utils = $utils;
     }
 
     public function addFrontendAssets()
     {
-        if ($this->containerUtil->isBackend()) {
+        if ($this->utils->container()->isBackend()) {
             return;
         }
 
-        if ($this->container->has('HeimrichHannot\EncoreBundle\Asset\FrontendAsset')) {
-            $this->container->get(\HeimrichHannot\EncoreBundle\Asset\FrontendAsset::class)->addActiveEntrypoint('contao-tinymce-bundle');
-            $this->container->get(\HeimrichHannot\EncoreBundle\Asset\FrontendAsset::class)->addActiveEntrypoint('contao-tinymce-bundle-theme');
-        }
-
-        $GLOBALS['TL_JAVASCRIPT']['contao-tinymce-bundle'] = 'bundles/heimrichhannottinymce/js/contao-tinymce-bundle.js|static';
-    }
-
-    public static function getSubscribedServices()
-    {
-        return [
-            '?HeimrichHannot\EncoreBundle\Asset\FrontendAsset'
-        ];
+        $this->addPageEntrypoint('contao-tinymce-bundle', [
+            'TL_JAVASCRIPT' => 'bundles/heimrichhannottinymce/js/contao-tinymce-bundle.js|static'
+        ]);
+        $this->addPageEntrypoint('contao-tinymce-bundle-theme');
     }
 }
