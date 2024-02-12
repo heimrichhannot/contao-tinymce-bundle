@@ -9,11 +9,10 @@
     "heimrichhannot/contao-encore-contracts": "^1.0",
     "heimrichhannot/contao-utils-bundle": "^2.234",
     "psr/container": "^1.0 || ^2.0",
-    "symfony/translation": "^3.4 || ^4.4",
     "symfony/event-dispatcher": "^4.4 || ^5.0",
-
     "symfony/event-dispatcher-contracts": "^1.0 || ^2.0 || ^3.0",
-    "symfony/service-contracts": "^1.0 || ^2.0 || ^3.0"
+    "symfony/service-contracts": "^1.0 || ^2.0 || ^3.0",
+    "symfony/translation-contracts": "^1.0 || ^2.0 || ^3.0"
   },
   "conflict": {
     "heimrichhannot/contao-encore-bundle": "<1.11"

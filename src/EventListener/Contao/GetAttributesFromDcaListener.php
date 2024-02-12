@@ -12,7 +12,7 @@ use HeimrichHannot\UtilsBundle\Container\ContainerUtil;
 use HeimrichHannot\UtilsBundle\Dca\DcaUtil;
 use HeimrichHannot\UtilsBundle\Model\ModelUtil;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
 /**
@@ -115,10 +115,10 @@ class GetAttributesFromDcaListener
             $attributes['data-tinymce'] = 1;
         }
 
-
-        /** @noinspection PhpMethodParametersCountMismatchInspection */
-        /** @noinspection PhpParamsInspection */
-        $event = $this->eventDispatcher->dispatch(CustomizeTinyMceOptionsEvent::NAME, new CustomizeTinyMceOptionsEvent($options, $attributes, $dc));
+        $event = $this->eventDispatcher->dispatch(
+            new CustomizeTinyMceOptionsEvent($options, $attributes, $dc),
+            CustomizeTinyMceOptionsEvent::NAME
+        );
 
         $attributes['data-tinymce-options'] = json_encode($event->getOptions());
 
