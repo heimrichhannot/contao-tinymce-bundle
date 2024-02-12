@@ -9,6 +9,7 @@ use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 use Contao\ManagerPlugin\Config\ConfigPluginInterface;
 use HeimrichHannot\TinyMceBundle\HeimrichHannotTinyMceBundle;
 use HeimrichHannot\UtilsBundle\HeimrichHannotContaoUtilsBundle;
+use HeimrichHannot\UtilsBundle\HeimrichHannotUtilsBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
 class Plugin implements BundlePluginInterface, ConfigPluginInterface
@@ -18,7 +19,7 @@ class Plugin implements BundlePluginInterface, ConfigPluginInterface
         return [
             BundleConfig::create(HeimrichHannotTinyMceBundle::class)->setLoadAfter([
                 ContaoCoreBundle::class,
-                HeimrichHannotContaoUtilsBundle::class,
+                HeimrichHannotUtilsBundle::class,
             ])
         ];
     }
@@ -26,8 +27,5 @@ class Plugin implements BundlePluginInterface, ConfigPluginInterface
     public function registerContainerConfiguration(LoaderInterface $loader, array $managerConfig)
     {
         $loader->load('@HeimrichHannotTinyMceBundle/Resources/config/services.yml');
-        if (class_exists('HeimrichHannot\EncoreBundle\HeimrichHannotContaoEncoreBundle')) {
-            $loader->load('@HeimrichHannotTinyMceBundle/Resources/config/config_encore.yml');
-        }
     }
 }
