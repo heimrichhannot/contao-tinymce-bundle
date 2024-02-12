@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.3.5] - 2024-02-12
+- Fixed: service registration
+
 ## [0.3.4] - 2024-02-12
 - Added: encore contracts support
 - Changed: require at least contao 4.9

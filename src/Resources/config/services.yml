@@ -11,8 +11,3 @@ services:
 
   HeimrichHannot\TinyMceBundle\Manager\TinyMceManager:
     public: true
-
-
-  HeimrichHannot\TinyMceBundle\EventSubscriber\:
-    resource: '../../EventSubscriber/*'
-    autoconfigure: true
