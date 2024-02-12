@@ -6,7 +6,7 @@
  * @license LGPL-3.0-or-later
  */
 
-namespace HeimrichHannot\TinyMceBundle\EventSubscriber;
+namespace HeimrichHannot\TinyMceBundle\EventListener;
 
 use HeimrichHannot\EncoreBundle\Helper\ConfigurationHelper;
 use HeimrichHannot\TinyMceBundle\Event\CustomizeTinyMceOptionsEvent;
@@ -14,7 +14,7 @@ use Psr\Container\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Contracts\Service\ServiceSubscriberInterface;
 
-class EncoreBundleTinyMceOptionsEventSubscriber implements EventSubscriberInterface, ServiceSubscriberInterface
+class EncoreBundleListener implements EventSubscriberInterface, ServiceSubscriberInterface
 {
     protected ContainerInterface $container;
 

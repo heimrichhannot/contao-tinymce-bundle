@@ -8,7 +8,6 @@ use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 use Contao\ManagerPlugin\Config\ConfigPluginInterface;
 use HeimrichHannot\TinyMceBundle\HeimrichHannotTinyMceBundle;
-use HeimrichHannot\UtilsBundle\HeimrichHannotContaoUtilsBundle;
 use HeimrichHannot\UtilsBundle\HeimrichHannotUtilsBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 

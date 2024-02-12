@@ -1,14 +1,17 @@
 services:
   _defaults:
     autowire: true
+    autoconfigure: true
 
   HeimrichHannot\TinyMceBundle\:
-    resource: '../../{Manager,Asset}/*'
+    resource: '../../{Asset,EventListener,Manager}/*'
+
+  HeimrichHannot\TinyMceBundle\Asset\FrontendAsset:
     public: true
 
-  HeimrichHannot\TinyMceBundle\EventListener\Contao\:
-    resource: '../../EventListener/Contao/*'
+  HeimrichHannot\TinyMceBundle\Manager\TinyMceManager:
     public: true
+
 
   HeimrichHannot\TinyMceBundle\EventSubscriber\:
     resource: '../../EventSubscriber/*'

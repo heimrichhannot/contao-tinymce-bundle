@@ -4,75 +4,43 @@
 namespace HeimrichHannot\TinyMceBundle\EventListener\Contao;
 
 
+use Contao\CoreBundle\ServiceAnnotation\Hook;
 use Contao\DataContainer;
 use Contao\PageModel;
 use HeimrichHannot\TinyMceBundle\Asset\FrontendAsset;
 use HeimrichHannot\TinyMceBundle\Event\CustomizeTinyMceOptionsEvent;
-use HeimrichHannot\UtilsBundle\Container\ContainerUtil;
 use HeimrichHannot\UtilsBundle\Dca\DcaUtil;
-use HeimrichHannot\UtilsBundle\Model\ModelUtil;
+use HeimrichHannot\UtilsBundle\Util\Utils;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Environment;
 
 /**
- * Class GetAttributesFromDcaListener
- * @package HeimrichHannot\TinyMceBundle\EventListener\Contao
- *
  * @Hook("getAttributesFromDca")
  */
 class GetAttributesFromDcaListener
 {
-    private $pageParents = null;
-
-    /**
-     * @var FrontendAsset
-     */
-    private $frontendAsset;
-
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
-
-    /**
-     * @var bool
-     */
-    protected $closed = false;
-    /**
-     * @var ContainerUtil
-     */
-    private $containerUtil;
-    /**
-     * @var DcaUtil
-     */
-    private $dcaUtil;
-    /**
-     * @var ModelUtil
-     */
-    private $modelUtil;
-    /**
-     * @var Environment
-     */
-    protected $twig;
-    /**
-     * @var TranslatorInterface
-     */
-    protected $translator;
+    private ?array $pageParents = null;
+    private FrontendAsset $frontendAsset;
+    private EventDispatcherInterface $eventDispatcher;
+    protected bool $closed = false;
+    private DcaUtil $dcaUtil;
+    protected Environment $twig;
+    protected TranslatorInterface $translator;
+    private Utils $utils;
 
     /**
      * GetAttributesFromDcaListener constructor.
      * @param null $pageParents
      */
-    public function __construct(ContainerUtil $containerUtil, FrontendAsset $frontendAsset, EventDispatcherInterface $eventDispatcher, DcaUtil $dcaUtil, ModelUtil $modelUtil, Environment $twig, TranslatorInterface $translator)
+    public function __construct(FrontendAsset $frontendAsset, EventDispatcherInterface $eventDispatcher, DcaUtil $dcaUtil, Environment $twig, TranslatorInterface $translator, Utils $utils)
     {
         $this->frontendAsset = $frontendAsset;
         $this->eventDispatcher = $eventDispatcher;
-        $this->containerUtil = $containerUtil;
         $this->dcaUtil = $dcaUtil;
-        $this->modelUtil = $modelUtil;
         $this->twig = $twig;
         $this->translator = $translator;
+        $this->utils = $utils;
     }
 
     /**
@@ -82,8 +50,7 @@ class GetAttributesFromDcaListener
      */
     public function __invoke(array $attributes, $dc = null): array
     {
-        if ($this->containerUtil->isBackend() || !in_array($attributes['type'], ['textarea']))
-        {
+        if ($this->utils->container()->isBackend() || !in_array($attributes['type'], ['textarea'])) {
             return $attributes;
         }
 
@@ -130,9 +97,8 @@ class GetAttributesFromDcaListener
         /** @var PageModel $objPage */
         global $objPage;
 
-        if (null === $this->pageParents && null !== $objPage)
-        {
-            $this->pageParents = $this->modelUtil->findParentsRecursively('pid', 'tl_page', $objPage);
+        if (null === $this->pageParents && null !== $objPage) {
+            $this->pageParents = $this->utils->model()->findParentsRecursively($objPage, 'pid');
             $this->pageParents[] = $objPage;
         }
 
@@ -150,7 +116,7 @@ class GetAttributesFromDcaListener
      */
     protected function addCharsLimit(array &$options, DataContainer $dc = null): void
     {
-        if(!key_exists('maxChars', $options)) {
+        if (!key_exists('maxChars', $options)) {
             return;
         }
 
