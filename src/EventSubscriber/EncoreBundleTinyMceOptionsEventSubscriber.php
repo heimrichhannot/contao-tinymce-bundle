@@ -16,12 +16,8 @@ use Symfony\Contracts\Service\ServiceSubscriberInterface;
 
 class EncoreBundleTinyMceOptionsEventSubscriber implements EventSubscriberInterface, ServiceSubscriberInterface
 {
-    /** @var ContainerInterface */
-    protected $container;
+    protected ContainerInterface $container;
 
-    /**
-     * EncoreBundleTinyMceOptionsEventSubscriber constructor.
-     */
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;

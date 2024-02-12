@@ -4,7 +4,7 @@ namespace HeimrichHannot\TinyMceBundle\Event;
 
 
 use Contao\DataContainer;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 class CustomizeTinyMceOptionsEvent extends Event
 {

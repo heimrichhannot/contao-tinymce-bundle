@@ -8,15 +8,13 @@
 
 namespace HeimrichHannot\TinyMceBundle\Event;
 
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 class AddOptionPresetEvent extends Event
 {
     const NAME = 'huh.tinymce.add_option_preset';
-    /**
-     * @var array
-     */
-    private $presets;
+
+    private array $presets;
 
     public function __construct(array $presets)
     {
