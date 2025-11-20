@@ -18,13 +18,12 @@ class Plugin implements BundlePluginInterface, ConfigPluginInterface
         return [
             BundleConfig::create(HeimrichHannotTinyMceBundle::class)->setLoadAfter([
                 ContaoCoreBundle::class,
-                HeimrichHannotUtilsBundle::class,
             ])
         ];
     }
 
     public function registerContainerConfiguration(LoaderInterface $loader, array $managerConfig)
     {
-        $loader->load('@HeimrichHannotTinyMceBundle/Resources/config/services.yml');
+        $loader->load('@HeimrichHannotTinyMceBundle/config/services.yaml');
     }
 }

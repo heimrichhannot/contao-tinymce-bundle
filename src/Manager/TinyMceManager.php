@@ -6,14 +6,6 @@ use HeimrichHannot\TinyMceBundle\Event\AddOptionPresetEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class TinyMceManager {
-
-    private EventDispatcherInterface $eventDispatcher;
-
-    public function __construct(EventDispatcherInterface $eventDispatcher)
-    {
-        $this->eventDispatcher = $eventDispatcher;
-    }
-
     public function getOptionPreset(string $type)
     {
         $presets = [
