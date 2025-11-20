@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.4.1] - 2025-11-20
+- Fixed: allowing html not working
+- Fixed: some old version leftovers
+
 ## [0.4.0] - 2025-11-20
 
 A complete rewrite of the extension with support for contao 5, contao form generator. 

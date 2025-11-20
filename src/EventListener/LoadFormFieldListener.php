@@ -11,11 +11,12 @@ class LoadFormFieldListener
 {
     public function __invoke(Widget $widget, string $formId, array $formData, Form $form): Widget
     {
-        if (!$widget->tinymceTpl) {
+        if (!$widget->useTinymce) {
             return $widget;
         }
 
         $widget->allowHtml = true;
+        $widget->preserveTags = true;
 
         return $widget;
     }
