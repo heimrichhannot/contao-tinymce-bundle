@@ -18,4 +18,4 @@ You'll see a new checkbox in textarea fields within the expert legend.
 
 ## Customization
 
-You can create custom TinyMCE configurations by creating variant of `[contao/templates/frontend_widget/components/tiny_mce.html.twig](contao/templates/frontend_widget/components/tiny_mce.html.twig)`.
+You can create custom TinyMCE configurations by creating variants of [contao/templates/frontend_widget/components/tiny_mce.html.twig](contao/templates/frontend_widget/components/tiny_mce.html.twig).
