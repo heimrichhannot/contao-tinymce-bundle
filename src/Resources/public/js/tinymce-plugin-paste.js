@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["tinymce-plugin-paste"],{vFQT:function(n,p,w){w("fE+E")}}]);

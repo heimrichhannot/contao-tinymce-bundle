@@ -4,9 +4,7 @@ namespace HeimrichHannot\TinyMceBundle\EventListener;
 
 use Contao\Backend;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
-use Contao\CoreBundle\Twig\FragmentTemplate;
 use Contao\Environment as ContaoEnvironment;
-use Contao\FrontendTemplate;
 use Contao\Widget;
 use Twig\Environment;
 
@@ -31,12 +29,7 @@ class ParseWidgetListener
             'base' => ContaoEnvironment::get('base'),
         ];
 
-//        $template = new FrontendTemplate('be_tinyMCE_test');
-//        $template->selector = 'ctrl_' . $widget->id;
-//        return $buffer . $template->parse();
-
         $template = $widget->tinymceTpl ?: 'frontend_widget/components/tiny_mce';
-//        $template = 'backend/be_tinyMCE_app_minimal';
 
         return $buffer . $this->twig->render(
                 '@Contao/' . $template . '.html.twig',

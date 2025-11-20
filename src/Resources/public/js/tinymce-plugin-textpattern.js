@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["tinymce-plugin-textpattern"],{eOTG:function(n,p,t){t("Otic")}}]);

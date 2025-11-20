@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["tinymce-plugin-media"],{Oupb:function(n,p,i){i("NpmH")}}]);

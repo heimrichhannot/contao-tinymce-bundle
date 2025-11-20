@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["tinymce-plugin-codesample"],{B9f7:function(n,p,i){i("qLiF")}}]);

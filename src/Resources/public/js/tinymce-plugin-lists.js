@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["tinymce-plugin-lists"],{hOyB:function(n,i,p){p("JAFY")}}]);

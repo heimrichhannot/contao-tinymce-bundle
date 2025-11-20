@@ -4,7 +4,6 @@ namespace HeimrichHannot\TinyMceBundle\EventListener;
 
 use Contao\CoreBundle\DependencyInjection\Attribute\AsCallback;
 use Contao\CoreBundle\Twig\Finder\FinderFactory;
-use Contao\CoreBundle\Twig\Loader\TemplateLocator;
 use Contao\DataContainer;
 
 #[AsCallback(table: 'tl_form_field', target: 'fields.tinymceTpl.options')]

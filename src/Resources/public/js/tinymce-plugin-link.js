@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["tinymce-plugin-link"],{Qjfq:function(n,i,p){p("vn/0")}}]);

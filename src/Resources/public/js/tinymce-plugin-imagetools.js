@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([["tinymce-plugin-imagetools"],{iGOs:function(n,i,o){o("ndmF")}}]);
