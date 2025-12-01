@@ -8,6 +8,9 @@
         document_base_url: '{{ base }}',
         branding: false,
         promotion: false,
+        setup: function(editor) {
+            editor.getElement().removeAttribute('required');
+        },
 
         {% block plugins %}
         plugins: 'link, lists',
@@ -27,5 +30,10 @@
         text_patterns: false,
         paste_as_text: true,
         {% endblock %}
+    });
+
+    document.getElementById('{{ selector }}').closest('form').addEventListener('submit', function (e) {
+        // Inhalt aus TinyMCE zurück ins textarea schreiben
+        tinymce.triggerSave();
     });
 </script>
