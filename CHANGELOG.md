@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.4.2] - 2025-12-02
+- Fixed: issues with required fields (ATTENTION: if you have completely overridden the tinymce template, you need to adjust it!)
+
 ## [0.4.1] - 2025-11-20
 - Fixed: allowing html not working
 - Fixed: some old version leftovers

@@ -31,9 +31,4 @@
         paste_as_text: true,
         {% endblock %}
     });
-
-    document.getElementById('{{ selector }}').closest('form').addEventListener('submit', function (e) {
-        // Inhalt aus TinyMCE zurück ins textarea schreiben
-        tinymce.triggerSave();
-    });
 </script>
