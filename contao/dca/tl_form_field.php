@@ -9,7 +9,7 @@ PaletteManipulator::create()
     ->applyToPalette('textarea', 'tl_form_field');
 
 $dca['palettes']['__selector__'][] = 'useTinymce';
-$dca['subpalettes']['useTinymce'] = 'tinymceTpl';
+$dca['subpalettes']['useTinymce'] = 'tinymceTpl,tinymceLengthIgnoreHtml';
 
 $dca['fields']['useTinymce'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_form_field']['useTinymce'],
@@ -22,6 +22,12 @@ $dca['fields']['tinymceTpl'] = [
     'inputType' => 'select',
     'eval' => ['tl_class' => 'w50'],
     'sql' => "varchar(64) NOT NULL default ''",
+];
+
+$dca['fields']['tinymceLengthIgnoreHtml'] = [
+    'inputType' => 'checkbox',
+    'eval' => ['tl_class' => 'w50 m12'],
+    'sql' => ['type' => 'boolean', 'default' => false],
 ];
 
 
