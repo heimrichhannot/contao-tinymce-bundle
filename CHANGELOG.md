@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.4.3] - 2026-01-30
+- Added: option to ignore html on maxlength and minlength validation
+
 ## [0.4.2] - 2025-12-02
 - Fixed: issues with required fields (ATTENTION: if you have completely overridden the tinymce template, you need to adjust it!)
 
