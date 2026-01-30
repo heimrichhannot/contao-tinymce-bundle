@@ -12,7 +12,7 @@ use Contao\Widget;
 class TinyMceWidget extends Widget
 {
 
-    public function generate()
+    public function generate(): void
     {
         // this is just a dummy class
     }
