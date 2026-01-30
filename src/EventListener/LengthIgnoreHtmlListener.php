@@ -53,11 +53,11 @@ class LengthIgnoreHtmlListener
         $count = $this->count((string) $widget->value);
 
         if ($model->minlength && $count < $model->minlength) {
-            $widget->addError(\sprintf($GLOBALS['TL_LANG']['ERR']['minlength'], $widget->strLabel, $model->minlength));
+            $widget->addError(\sprintf($GLOBALS['TL_LANG']['ERR']['minlength'], $widget->label, $model->minlength));
         }
 
         if ($model->maxlength && $count > $model->maxlength) {
-            $widget->addError(\sprintf($GLOBALS['TL_LANG']['ERR']['maxlength'], $widget->strLabel, $model->maxlength));
+            $widget->addError(\sprintf($GLOBALS['TL_LANG']['ERR']['maxlength'], $widget->label, $model->maxlength));
         }
 
         return $widget;

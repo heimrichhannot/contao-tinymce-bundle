@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.4.4] - 2026-01-30
+- Fixed: form label not showing up in length errors
+
 ## [0.4.3] - 2026-01-30
 - Added: option to ignore html on maxlength and minlength validation
 

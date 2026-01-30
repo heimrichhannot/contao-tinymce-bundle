@@ -8,7 +8,7 @@ use Contao\Widget;
  * @property bool   $useTinymce
  * @property string $tinymceTpl
  * @property bool   $tinymceLengthIgnoreHtml
- * @property string $strLabel
+ * @property string $label
  */
 class TinyMceWidget extends Widget
 {
