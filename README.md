@@ -2,6 +2,11 @@
 
 This bundle allow using tinymce in the contao frontend (form generator).
 
+## Features
+- Enable TinyMCE for textarea fields in frontend forms
+- Customizable TinyMCE configuration via Twig templates
+- option to ignore html for min and max length validation
+
 ## Installation
 
 Install with composer or contao manager and update database afterwards.

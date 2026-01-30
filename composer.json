@@ -16,5 +16,13 @@
     },
     "extra": {
         "contao-manager-plugin": "HeimrichHannot\\TinyMceBundle\\ContaoManager\\Plugin"
+    },
+    "require-dev": {
+        "rector/rector": "*",
+        "contao/contao-rector": "dev-main",
+        "symplify/easy-coding-standard": "*",
+        "phpstan/phpstan": "*",
+        "phpstan/phpstan-symfony": "*",
+        "contao/manager-plugin": "*"
     }
 }
