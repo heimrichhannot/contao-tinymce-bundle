@@ -6,6 +6,7 @@ use Contao\Backend;
 use Contao\CoreBundle\DependencyInjection\Attribute\AsHook;
 use Contao\Environment as ContaoEnvironment;
 use Contao\Widget;
+use HeimrichHannot\TinyMceBundle\Widget\TinyMceWidget;
 use Twig\Environment;
 
 #[AsHook('parseWidget')]
@@ -17,6 +18,9 @@ class ParseWidgetListener
     {
     }
 
+    /**
+     * @param TinyMceWidget $widget
+     */
     public function __invoke(string $buffer, Widget $widget): string
     {
         if (!$widget->useTinymce) {

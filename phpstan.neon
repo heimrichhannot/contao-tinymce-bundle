@@ -1,8 +1,8 @@
 parameters:
-  level: 1
+  level: 5
   paths:
     - src
-#    - contao
+    - contao
 #  universalObjectCratesClasses:
 #    - Contao\Database\Result
 #    - Contao\Model
