@@ -17,7 +17,7 @@ class Plugin implements BundlePluginInterface, ConfigPluginInterface
         return [
             BundleConfig::create(HeimrichHannotTinyMceBundle::class)->setLoadAfter([
                 ContaoCoreBundle::class,
-            ])
+            ]),
         ];
     }
 

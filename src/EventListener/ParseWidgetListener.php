@@ -14,8 +14,7 @@ class ParseWidgetListener
 {
     public function __construct(
         private readonly Environment $twig,
-    )
-    {
+    ) {
     }
 
     /**
@@ -28,16 +27,16 @@ class ParseWidgetListener
         }
 
         $context = [
-            'selector' => 'ctrl_' . $widget->id,
+            'selector' => 'ctrl_'.$widget->id,
             'language' => Backend::getTinyMceLanguage(),
             'base' => ContaoEnvironment::get('base'),
         ];
 
         $template = $widget->tinymceTpl ?: 'frontend_widget/components/tiny_mce';
 
-        return $buffer . $this->twig->render(
-                '@Contao/' . $template . '.html.twig',
-                $context,
-            );
+        return $buffer.$this->twig->render(
+            '@Contao/'.$template.'.html.twig',
+            $context,
+        );
     }
 }

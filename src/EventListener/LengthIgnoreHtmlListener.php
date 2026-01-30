@@ -50,7 +50,7 @@ class LengthIgnoreHtmlListener
             return $widget;
         }
 
-        $count = $this->count((string)$widget->value);
+        $count = $this->count((string) $widget->value);
 
         if ($model->minlength && $count < $model->minlength) {
             $widget->addError(\sprintf($GLOBALS['TL_LANG']['ERR']['minlength'], $widget->strLabel, $model->minlength));
@@ -66,6 +66,7 @@ class LengthIgnoreHtmlListener
     protected function count(string $text): int
     {
         $text = html_entity_decode(strip_tags($text), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
         return mb_strlen($text, 'UTF-8');
     }
 }

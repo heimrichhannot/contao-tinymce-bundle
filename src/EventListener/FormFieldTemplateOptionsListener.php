@@ -11,8 +11,7 @@ class FormFieldTemplateOptionsListener
 {
     public function __construct(
         private readonly FinderFactory $finderFactory,
-    )
-    {
+    ) {
     }
 
     public function __invoke(?DataContainer $dc = null): array
