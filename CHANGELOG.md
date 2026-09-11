@@ -1,6 +1,9 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.4.5] - 2026-09-11
+- Changed: added license key to default config to avoid license warning in editor
+
 ## [0.4.4] - 2026-01-30
 - Fixed: form label not showing up in length errors
 
